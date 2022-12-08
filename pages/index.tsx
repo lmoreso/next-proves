@@ -1,8 +1,19 @@
+/* eslint-disable react/jsx-key */
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { IPostData, getSortedPostsData } from '../lib/posts';
 
-export default function Home() {
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
+
+export default function Home(props: {allPostsData: IPostData[]}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,6 +27,13 @@ export default function Home() {
           <a href="./vercel-index" className={styles.card}>
             <h2>Ves a la Home original despres del create next app</h2>
           </a>
+
+          {props.allPostsData.map(( aDoc ) => (
+            <a href={`./posts/${aDoc.id}`} className={styles.card} key={aDoc.id}>
+              <h2>{`${aDoc.title}`}</h2>
+            </a>
+          ))}
+
 
         </div>
       </main>
