@@ -18,7 +18,7 @@ export default function HomeVercel() {
 
         <p className={styles.description}>
           Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
+          <a href="."><code className={styles.code}>pages/index.tsx</code></a>
         </p>
 
         <div className={styles.grid}>
